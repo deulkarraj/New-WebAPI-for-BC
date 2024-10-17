@@ -39,6 +39,78 @@ function stopRecognition() {
         recognition.stop();
     }
 }
+function sendToBusinessCentral(text) {
+                // Replace with your Business Central endpoint
+                const bcEndpoint = 'your-business-central-endpoint';
+                
+                fetch(bcEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ recognizedText: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        } else {
+            resultDiv.innerHTML = 'Speech recognition is not supported in this browser.';
+            startButton.disabled = true;
+            stopButton.disabled = true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function sendToAzureSpeechService(transcript) {
 //     const apiKey = '30ed5e6dfb2e4239ad2ede908e996d1a'; // Replace with your actual key
