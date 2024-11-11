@@ -38,7 +38,7 @@ function startRecognition() {
 function stopRecognition() {
     if (recognition) {
         recognition.stop();
-        await sendDataToBusinessCentral(transcript);
+        // await sendDataToBusinessCentral(transcript);
     }
 }
 
