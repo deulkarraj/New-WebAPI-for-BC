@@ -39,30 +39,72 @@ function stopRecognition() {
         recognition.stop();
     }
 }
-function sendToBusinessCentral(text) {
-                // Replace with your Business Central endpoint
-                const bcEndpoint = 'your-business-central-endpoint';
+
+
+
+
+
+const axios = require('axios');
+const qs = require('qs');
+
+async function getAccessToken() {
+    const tokenEndpoint = 'https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/v2.0/token';
+    const data = qs.stringify({
+        client_id: 'YOUR_CLIENT_ID',
+        client_secret: 'YOUR_CLIENT_SECRET',
+        scope: 'https://api.businesscentral.dynamics.com/.default',
+        grant_type: 'client_credentials',
+    });
+
+    const response = await axios.post(tokenEndpoint, data, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+
+    return response.data.access_token;
+}
+
+async function sendDataToBusinessCentral(data) {
+    const token = await getAccessToken();
+    const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/YOUR_TENANT_ID/YOUR_ENVIRONMENT/api/v2.0/YOUR_API_ENDPOINT';
+
+    const response = await axios.patch(endpoint, data, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (response.status === 200) {
+        console.log('Data sent successfully!');
+    } else {
+        console.error('Failed to send data:', response.statusText);
+    }
+}
+
+// function sendToBusinessCentral(text) {
+//                 // Replace with your Business Central endpoint
+//                 const bcEndpoint = 'your-business-central-endpoint';
                 
-                fetch(bcEndpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ recognizedText: text })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            }
-        } else {
-            resultDiv.innerHTML = 'Speech recognition is not supported in this browser.';
-            startButton.disabled = true;
-            stopButton.disabled = true;
-        }
+//                 fetch(bcEndpoint, {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify({ recognizedText: text })
+//                 })
+//                 .then(response => response.json())
+//                 .then(data => {
+//                     console.log('Success:', data);
+//                 })
+//                 .catch((error) => {
+//                     console.error('Error:', error);
+//                 });
+//             }
+//         } else {
+//             resultDiv.innerHTML = 'Speech recognition is not supported in this browser.';
+//             startButton.disabled = true;
+//             stopButton.disabled = true;
+//         }
 
 
 
