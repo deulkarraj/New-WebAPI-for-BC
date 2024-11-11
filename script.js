@@ -1,7 +1,7 @@
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const resultParagraph = document.getElementById('result');
-const transcript = 'Operation Unsuccessful';
+// const transcript = 'Operation Unsuccessful';
 
 let recognition;
 
@@ -20,7 +20,7 @@ function startRecognition() {
         };
 
         recognition.onresult = (event) => {
-            transcript = event.results[event.results.length - 1][0].transcript;
+           const transcript = event.results[event.results.length - 1][0].transcript;
             // sendToAzureSpeechService(transcript);
             resultParagraph.textContent = transcript; // Display the transcript directly
         };
