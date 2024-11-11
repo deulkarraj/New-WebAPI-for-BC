@@ -50,16 +50,17 @@ const axios = require('axios');
 const qs = require('qs');
 
 async function getAccessToken() {
-    const tokenEndpoint = 'https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/v2.0/token';
+    const tokenEndpoint = 'https://login.microsoftonline.com/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/oauth2/v2.0/token';
     const data = qs.stringify({
-        client_id: 'YOUR_CLIENT_ID',
-        client_secret: 'YOUR_CLIENT_SECRET',
+        client_id: 'af6c8435-f1cf-4d04-a0e7-4e389e6ff9a7',
+        client_secret: 'Nd18Q~5KT~2dpItaGnRz3iirpz4JypuDadf1mcLT',
         scope: 'https://api.businesscentral.dynamics.com/.default',
         grant_type: 'client_credentials',
     });
 
     const response = await axios.post(tokenEndpoint, data, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+         headers: { 'Content-Type': 'application/text' },
     });
 
     return response.data.access_token;
@@ -67,7 +68,7 @@ async function getAccessToken() {
 
 async function sendDataToBusinessCentral(data) {
     const token = await getAccessToken();
-    const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/YOUR_TENANT_ID/YOUR_ENVIRONMENT/api/v2.0/YOUR_API_ENDPOINT';
+    const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development/WS/CRONUS%20USA%2C%20Inc./Codeunit/SpeechToText';
 
     const response = await axios.patch(endpoint, data, {
         headers: {
