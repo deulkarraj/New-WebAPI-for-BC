@@ -1,7 +1,7 @@
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const resultParagraph = document.getElementById('result');
-// const transcript = 'Operation Unsuccessful';
+const transcript = 'Operation Unsuccessful';
 
 let recognition;
 
@@ -20,7 +20,7 @@ function startRecognition() {
         };
 
         recognition.onresult = (event) => {
-           const transcript = event.results[event.results.length - 1][0].transcript;
+            transcript = event.results[event.results.length - 1][0].transcript;
             // sendToAzureSpeechService(transcript);
             resultParagraph.textContent = transcript; // Display the transcript directly
         };
@@ -35,10 +35,10 @@ function startRecognition() {
     }
 }
 
-function stopRecognition() {
+async function stopRecognition() {
     if (recognition) {
         recognition.stop();
-        // await sendDataToBusinessCentral(transcript);
+        await sendDataToBusinessCentral(transcript);
     }
 }
 
@@ -83,6 +83,11 @@ async function sendDataToBusinessCentral(data) {
         console.error('Failed to send data:', response.statusText);
     }
 }
+
+
+
+
+
 
 // function sendToBusinessCentral(text) {
 //                 // Replace with your Business Central endpoint
