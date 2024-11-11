@@ -1,7 +1,7 @@
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const resultParagraph = document.getElementById('result');
-const transcript = "Operation Unsuccessful";
+const transcript = 'Operation Unsuccessful';
 
 let recognition;
 
