@@ -21,7 +21,7 @@ function startRecognition() {
 
         recognition.onresult = (event) => {
             transcript = event.results[event.results.length - 1][0].transcript;
-            // sendToAzureSpeechService(transcript);
+            
             resultParagraph.textContent = transcript; // Display the transcript directly
         };
 
