@@ -1,7 +1,7 @@
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const resultParagraph = document.getElementById('result');
-const transcript = 'Operation Unsuccessful';
+let transcript = 'Operation Unsuccessful';
 
 let recognition;
 
@@ -46,12 +46,12 @@ async function stopRecognition() {
 
 
 
-const axios = require('axios');
-const qs = require('qs');
+// const axios = require('axios');
+// const qs = require('qs');
 
 async function getAccessToken() {
     const tokenEndpoint = 'https://login.microsoftonline.com/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/oauth2/v2.0/token';
-    const data = qs.stringify({
+    const data = Qs.stringify({
         client_id: 'af6c8435-f1cf-4d04-a0e7-4e389e6ff9a7',
         client_secret: 'Nd18Q~5KT~2dpItaGnRz3iirpz4JypuDadf1mcLT',
         scope: 'https://api.businesscentral.dynamics.com/.default',
