@@ -52,8 +52,8 @@ async function stopRecognition() {
 async function getAccessToken() {
     const tokenEndpoint = 'https://login.microsoftonline.com/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/oauth2/v2.0/token';
     const data = Qs.stringify({
-        client_id: 'af6c8435-f1cf-4d04-a0e7-4e389e6ff9a7',
-        client_secret: 'Nd18Q~5KT~2dpItaGnRz3iirpz4JypuDadf1mcLT',
+        client_id: '6c8c618a-0628-472b-b7c4-f5a41edc3bc9',
+        client_secret: 'Zft8Q~WAYRgOgjImUBT71epEQ~Umwd3EaUSKbatJ',
         scope: 'https://api.businesscentral.dynamics.com/.default',
         grant_type: 'client_credentials',
     });
