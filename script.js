@@ -38,7 +38,8 @@ function startRecognition() {
 async function stopRecognition() {
     if (recognition) {
         recognition.stop();
-        await sendDataToBusinessCentral(transcript);
+        // await sendDataToBusinessCentral(transcript);
+         await sendDataToBusinessCentral();
     }
 }
 
@@ -70,6 +71,10 @@ async function sendDataToBusinessCentral(data) {
     const token = await getAccessToken();
     const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development/WS/CRONUS%20USA%2C%20Inc./Page/AudioToTextAPI';
 
+    const data = {
+        "TranscribedText": "Authentication_validCredentials and APi is successfullghfhfhcsjgfnhdfdfgdgsdgdgdf"
+    }
+    
     const response = await axios.patch(endpoint, data, {
         headers: {
             'Authorization': `Bearer ${token}`,
