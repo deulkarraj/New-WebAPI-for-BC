@@ -52,15 +52,15 @@ async function stopRecognition() {
 async function getAccessToken() {
     const tokenEndpoint = 'https://login.microsoftonline.com/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/oauth2/v2.0/token';
     const data = Qs.stringify({
-        client_id: '6c8c618a-0628-472b-b7c4-f5a41edc3bc9',
-        client_secret: 'Zft8Q~WAYRgOgjImUBT71epEQ~Umwd3EaUSKbatJ',
+        client_id: 'ba95a7b7-2c93-43c6-9ba4-7370a6b9a4b6',
+        client_secret: 'aTO8Q~elnCZYRRI.uFtD3DDLeM9GlzdO_POjWbKK',
         scope: 'https://api.businesscentral.dynamics.com/.default',
         grant_type: 'client_credentials',
     });
 
     const response = await axios.post(tokenEndpoint, data, {
-        // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-         headers: { 'Content-Type': 'application/text' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+         // headers: { 'Content-Type': 'application/text' },
     });
 
     return response.data.access_token;
@@ -68,7 +68,7 @@ async function getAccessToken() {
 
 async function sendDataToBusinessCentral(data) {
     const token = await getAccessToken();
-    const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development/WS/CRONUS%20USA%2C%20Inc./Codeunit/SpeechToText';
+    const endpoint = 'https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development/WS/CRONUS%20USA%2C%20Inc./Page/AudioToTextAPI';
 
     const response = await axios.patch(endpoint, data, {
         headers: {
