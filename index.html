@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,4 +13,71 @@
     <script src="script.js"></script>
 </body>
 </html>
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Redirect</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+        .modal {
+            width: 80%;
+            height: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal iframe {
+            flex: 1;
+            border: none;
+        }
+        .modal-header {
+            padding: 10px;
+            background-color: #0078D7; /* Business Central theme color */
+            color: white;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-button {
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal">
+        <div class="modal-header">
+            <span>Third-Party App</span>
+            <span class="close-button" onclick="closeModal()">×</span>
+        </div>
+        <iframe id="appFrame" src=""></iframe>
+    </div>
+    <script>
+        // Parse the URL parameter for the target app
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetUrl = urlParams.get('target');
 
+        if (targetUrl) {
+            // Load the target app into the iframe
+            document.getElementById('appFrame').src = targetUrl;
+        } else {
+            alert('No target URL provided!');
+        }
+
+    </script>
+</body>
+</html>
