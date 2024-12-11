@@ -150,51 +150,9 @@
 //     }
 // }
 
-<!-- Modal Structure -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span id="close" class="close">&times;</span>
-        <iframe id="iframe" src="" width="100%" height="400px"></iframe>
-    </div>
-</div>
 
-<style>
-/* Modal CSS */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-</style>
-
-<script>
 // Modal opening and closing logic
 function openModal(url) {
     document.getElementById('iframe').src = url; // Set iframe src to your third-party app URL
@@ -267,10 +225,8 @@ async function sendDataToBusinessCentral(transcript) {
     try {
         const token = await authenticateAndGetToken();
         
-        // const endpoint = `https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development2/ODataV4/Company('CRONUS%20USA%2C%20Inc.')/audioTranscription`;
         const endpoint = `https://api.businesscentral.dynamics.com/v2.0/12ee7ca7-ad23-44b5-afa6-4f2a2cbdea54/Development/ODataV4/Company('CRONUS%20USA%2C%20Inc.')/AudioToTextAPI`;
 
-        
         const data = {
             TranscribedText: transcript
         };
@@ -280,7 +236,6 @@ async function sendDataToBusinessCentral(transcript) {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                // 'Access-Control-Allow-Origin': '*'
             }
         });
 
@@ -313,8 +268,8 @@ function startRecognition() {
         resultParagraph.textContent = 'Listening...recognition started';
         recognition = new SpeechRecognition();
         recognition.lang = 'en-US';
-        //testing
-resultParagraph.textContent = 'Listening...1111';
+        
+        resultParagraph.textContent = 'Listening...1111';
         recognition.onstart = () => {
             resultParagraph.textContent = 'Listening...';
         };
@@ -327,8 +282,6 @@ resultParagraph.textContent = 'Listening...1111';
         recognition.onerror = (event) => {
             console.error('Error occurred:', event.error);
             resultParagraph.textContent = `Error: ${event.error}`;
-            // transcript = 'this is not working';
-            // resultParagraph.textContent = `this is not working`;
         };
 
         recognition.start();
@@ -358,4 +311,4 @@ async function stopRecognition() {
         }
     }
 }
-</script>
+
